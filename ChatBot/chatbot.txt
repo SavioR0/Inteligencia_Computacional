@@ -1,0 +1,36 @@
+pergunta(1, Resposta):-
+    format("Aqui estão todos as opçoes de planos: "),
+    format("\n 1- Plano 1\n 2- Plano 2 \n 3- Plano 3\n"),
+	read(Entrada1),
+	pergunta1(Entrada1, Resposta).
+
+pergunta1(1, " Plano 1 Contratado com sucesso!"):-
+    format("Deseja finalizar operações ? 1- Sim , 2- Não "),
+    read(Entrada),
+    perguntaFim(Entrada).
+    
+pergunta1(2, " Plano 2 Contratado com sucesso!"):-
+    format("Deseja finalizar operações ? 1- Sim , 2- Não "),
+    read(Entrada),
+    perguntaFim(Entrada).
+
+pergunta1(3, " Plano 3 Contratado com sucesso!"):-
+    format("Deseja finalizar operações ? 1- Sim , 2- Não "),
+    read(Entrada),
+    perguntaFim(Entrada).
+    
+perguntaFim(1).
+perguntaFim(2):-
+    chatbot.
+
+chatbot:-
+    format("Olá, estou aqui para te ajudar! \n"),
+	format(" 1- Contratar planos.\n"),
+	format(" 2- Cancelar planos.\n"),
+    format(" 3- Recarregar.\n"),
+    format(" 4- Renovar plano vigente.\n"),
+    format(" 5- Relatar problemas.\n"),
+	format(" Escolha a opção que deseja : "),
+    read(Entrada),
+    pergunta(Entrada, Resposta),
+	write(Resposta).

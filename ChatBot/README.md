@@ -1,0 +1,2 @@
+# ChatBot 
+Trabalho cujo objetivo é desenvolver um chatBot na linguagem prolog o qual foi escolhido como tema uma operadora de telefonia. Basicamente, o chatBot será responsável por atender solicitação de contratação e cancelamento de planos, recargas, renovações e na aba de problemas possui possibilidade de relatar complicações sobre serviços prestados pela operadora.

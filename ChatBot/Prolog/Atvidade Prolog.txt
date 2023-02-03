@@ -1,0 +1,65 @@
+homem(joao).
+homem(joaquim).
+homem(marcelino).
+homem(aristedes).
+
+mulher(joana).
+mulher(serafina).
+mulher(maria).
+mulher(ana).
+
+progenitor(joao, joaquim).
+progenitor(joao, serafina).
+progenitor(joana, joaquim).
+progenitor(joana, serafina).
+
+progenitor(serafina, maria).
+progenitor(serafina, ana).
+
+progenitor(joaquim, marcelino).
+
+progenitor(marcelino, aristedes).
+progenitor(maria, aristedes).
+
+pais(X,Y) :-  progenitor(X, Y).
+mae(X, Y) :- progenitor(X, Y), mulher(X).
+pai(X, Y) :- progenitor(X, Y), homem(X).
+
+irmaos(_, [],[]).
+irmaos(X,[H|T], S):- irmaos(X, T,T1), ( progenitor(Z,X), progenitor(Z, H), X\==H ->  S = [H|T1]; S=T1 ). 
+
+irmaoirma(_, [],[],[]).
+irmaoirma(X,[H|T], S, R):- irmaoirma(X, T,TH, TF), ( (   progenitor(Z,X), progenitor(Z, H), X\==H, homem(H)) ->  S = [H|TH], R =TF
+                                                   ;
+                                                   progenitor(Z,X), progenitor(Z, H), X\==H, mulher(H)->   R = [H|TF], S=TH
+                                                   ;
+                                                   S= TH, R=TF). 
+
+irmao(X, Y) :- progenitor(Z,X), progenitor(Z, Y), X\==Y, homem(X).
+irma(X, Y) :- progenitor(Z,X), progenitor(Z, Y), X\==Y, mulher(X).
+
+avo(X,Y) :- progenitor(X, Z), progenitor(Z, Y), homem(X).
+
+descendente(X,Y) :-  progenitor(Y,X), X\==Y. 
+descendente(X,Y) :- progenitor(Y, Z), descendente(X, Z).
+
+ascendente(_,[],[]).
+ascendente(X,[H|T], S):- ascendente(X, T,T1), ( (  descendente(X, H), X\==H) ->  S = [H|T1]; S=T1 ). 
+
+tio(X, Y) :- pais(Z, Y), (   irma(Z, X); irmao(Z, X)). 
+tios(_, [],[]).
+tios(X,[H|T], S):- tios(X, T,T1), ( (   pais(Z, H), irma(Z, X), ) ->  S = [H|T1]; S=T1 ). 
+
+
+primo(_, [],[]).
+primo(X,[H|T], S):- primo(X, T,T1), ( (   pais(Z, X), tio(Z, H)) ->  S = [H|T1]; S=T1 ). 
+
+% Formulação das questões porpostas
+
+% 1- pai(josé, joaquim).
+% 2- mae(joana, Filhos).
+% 3- primo(marcelino, [joao, joaquim, marcelino, aristedes, joana, serafina, maria, ana], Primos).
+% 4- tio(Tio, Sobrinha).
+% 5- ascendente(aristedes,[joao, joaquim, marcelino, aristedes, joana, serafina, maria, ana], Ascendentes). 
+% 6- irmaoirma(maria,[joao, joaquim, marcelino, aristedes, joana, serafina, maria, ana], Irmaos, Irmas)
+

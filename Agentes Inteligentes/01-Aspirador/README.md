@@ -1,0 +1,3 @@
+# Agente Inteligentes 2x1
+
+Implementação de um agente reativo simples em código python. Nesse sentido, o objetivo foi simular um aspirador capaz de limpar dois quartos (A e B) considerando todas as possíveis condições iniciais. São elas: A- sujo e B - sujo, A - sujo e B - limpo, A  -limpo e B - sujo e A - limpo e B - limpo. Além disso, foi necessário considerar a posição inicial do aspirador, em A ou B para todas as condições.
